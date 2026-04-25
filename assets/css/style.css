@@ -368,6 +368,95 @@ footer .footer-brand {
   margin-top: 8px;
 }
 
+/* ---- ABOUT PAGE ---- */
+.about-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+.about-page h1 {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--brown-dark);
+  margin-bottom: 16px;
+}
+.about-page h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--brown-dark);
+  margin: 32px 0 12px;
+}
+.about-page p {
+  font-size: 16px;
+  color: var(--brown-med);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.about-page ul {
+  list-style: none;
+  padding: 0;
+}
+.about-page ul li {
+  font-size: 15px;
+  color: var(--brown-med);
+  padding: 6px 0;
+  padding-left: 16px;
+  position: relative;
+}
+.about-page ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--burgundy);
+}
+.social-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.social-link {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid var(--tan-light);
+  border-radius: 24px;
+  text-decoration: none;
+  color: var(--brown-med);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.social-link:hover {
+  border-color: var(--burgundy);
+  color: var(--burgundy);
+}
+.about-disclosure {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--tan-light);
+}
+.about-disclosure p {
+  font-size: 14px;
+  color: var(--brown-light);
+}
+
+/* ---- FOOTER SOCIAL ---- */
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 12px 0;
+}
+.footer-social a {
+  color: var(--brown-med);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+.footer-social a:hover { color: var(--burgundy); }
+
 /* ---- RESPONSIVE ---- */
 @media (min-width: 640px) {
   .posts-grid { grid-template-columns: repeat(2, 1fr); }
