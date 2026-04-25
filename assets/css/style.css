@@ -183,12 +183,66 @@ nav {
   margin-bottom: 8px;
 }
 
+/* ---- TOOLBAR (view toggle + category filter) ---- */
+.toolbar {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 20px 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.view-toggle {
+  display: flex;
+  gap: 4px;
+}
+.view-btn {
+  background: var(--white);
+  border: 1px solid var(--tan-light);
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  color: var(--brown-light);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.view-btn:hover { border-color: var(--burgundy); color: var(--burgundy); }
+.view-btn.active {
+  background: var(--burgundy);
+  color: var(--white);
+  border-color: var(--burgundy);
+}
+
+/* ---- VIEW MODES ---- */
+.posts-grid.view-grid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.posts-grid.view-grid .post-card {
+  border-radius: 4px;
+  border: none;
+}
+.posts-grid.view-grid .post-card-body {
+  display: none;
+}
+.posts-grid.view-grid .post-card-img {
+  aspect-ratio: 1;
+  object-fit: cover;
+  cursor: pointer;
+}
+.posts-grid.view-list {
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
 /* ---- CATEGORY FILTER ---- */
 .category-filter {
   display: flex;
-  justify-content: center;
   gap: 10px;
-  padding: 24px 24px 0;
   flex-wrap: wrap;
 }
 .cat-btn {
@@ -452,13 +506,14 @@ footer .footer-brand {
 
 /* ---- RESPONSIVE ---- */
 @media (min-width: 640px) {
-  .posts-grid { grid-template-columns: repeat(2, 1fr); }
-  .hero h1 { font-size: 42px; }
+  .posts-grid.view-list { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 560px) {
   .nav-links { gap: 16px; }
   .nav-links a { font-size: 13px; }
-  .email-bar-inner { flex-direction: column; }
-  .hero h1 { font-size: 28px; }
   .products-list { grid-template-columns: 1fr; }
+  .posts-grid.view-grid { grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .view-toggle { justify-content: center; }
+  .category-filter { justify-content: center; }
 }

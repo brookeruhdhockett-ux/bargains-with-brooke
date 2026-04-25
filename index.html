@@ -34,12 +34,22 @@
     </div>
   </div>
 
-  <!-- Category Filter -->
-  <div class="category-filter">
-    <button class="cat-btn active" data-cat="all">all</button>
-    <button class="cat-btn" data-cat="gift-guide">gift guides</button>
-    <button class="cat-btn" data-cat="deals">deals</button>
-    <button class="cat-btn" data-cat="kids">kids</button>
+  <!-- View Toggle + Category Filter -->
+  <div class="toolbar">
+    <div class="view-toggle">
+      <button class="view-btn active" data-view="grid" title="grid view">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><rect x="0" y="0" width="5" height="5" rx="1"/><rect x="6.5" y="0" width="5" height="5" rx="1"/><rect x="13" y="0" width="5" height="5" rx="1"/><rect x="0" y="6.5" width="5" height="5" rx="1"/><rect x="6.5" y="6.5" width="5" height="5" rx="1"/><rect x="13" y="6.5" width="5" height="5" rx="1"/><rect x="0" y="13" width="5" height="5" rx="1"/><rect x="6.5" y="13" width="5" height="5" rx="1"/><rect x="13" y="13" width="5" height="5" rx="1"/></svg>
+      </button>
+      <button class="view-btn" data-view="list" title="list view">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><rect x="0" y="1" width="18" height="4" rx="1"/><rect x="0" y="7" width="18" height="4" rx="1"/><rect x="0" y="13" width="18" height="4" rx="1"/></svg>
+      </button>
+    </div>
+    <div class="category-filter">
+      <button class="cat-btn active" data-cat="all">all</button>
+      <button class="cat-btn" data-cat="gift-guide">gift guides</button>
+      <button class="cat-btn" data-cat="deals">deals</button>
+      <button class="cat-btn" data-cat="kids">kids</button>
+    </div>
   </div>
 
   <div class="content">
@@ -102,6 +112,33 @@
         document.querySelectorAll('.post-card').forEach(card => {
           card.style.display = (cat === 'all' || card.dataset.category === cat) ? '' : 'none';
         });
+      });
+    });
+
+    // View toggle (grid vs list)
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const view = btn.dataset.view;
+        const grid = document.querySelector('.posts-grid');
+        if (view === 'grid') {
+          grid.classList.add('view-grid');
+          grid.classList.remove('view-list');
+        } else {
+          grid.classList.remove('view-grid');
+          grid.classList.add('view-list');
+        }
+      });
+    });
+    // Default to grid view
+    document.querySelector('.posts-grid').classList.add('view-grid');
+
+    // Make grid-view images clickable
+    document.querySelectorAll('.post-card-img').forEach(img => {
+      img.addEventListener('click', () => {
+        const link = img.closest('.post-card').querySelector('.post-card-title a');
+        if (link) window.location.href = link.href;
       });
     });
   </script>
