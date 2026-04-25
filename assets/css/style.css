@@ -59,8 +59,7 @@ body {
 nav {
   background: var(--white);
   border-bottom: 1px solid var(--tan-light);
-  border-top: 3px solid transparent;
-  border-image: linear-gradient(90deg, var(--rose), var(--blue), var(--sage), var(--lavender)) 1;
+  border-top: 3px solid var(--tan-light);
   padding: 0 24px;
   position: sticky;
   top: 0;
@@ -447,8 +446,7 @@ nav {
 footer {
   padding: 32px 24px;
   text-align: center;
-  border-top: 3px solid transparent;
-  border-image: linear-gradient(90deg, var(--rose), var(--blue), var(--sage), var(--lavender)) 1;
+  border-top: 3px solid var(--tan-light);
   /* gingham */
   background-color: var(--bg-pattern);
   background-image:
