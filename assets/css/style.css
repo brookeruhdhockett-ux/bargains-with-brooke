@@ -1,0 +1,312 @@
+/* bargains with brooke — clean, warm, modern */
+
+:root {
+  --bg: #ffffff;
+  --bg-warm: #f5f0eb;
+  --tan: #deccb4;
+  --tan-light: #e8ddd0;
+  --burgundy: #b43232;
+  --burgundy-dark: #8a2626;
+  --brown-dark: #28231e;
+  --brown-med: #645a4a;
+  --brown-light: #9a8b78;
+  --white: #ffffff;
+  --shadow: rgba(0,0,0,0.06);
+  --radius: 16px;
+  --max-w: 960px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--brown-dark);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- NAV ---- */
+nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--tan-light);
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.nav-logo {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--brown-dark);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+}
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--brown-med);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: lowercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--burgundy); }
+
+/* ---- HERO ---- */
+.hero {
+  background: var(--bg-warm);
+  padding: 48px 24px;
+  text-align: center;
+}
+.hero h1 {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--brown-dark);
+  margin-bottom: 8px;
+}
+.hero p {
+  color: var(--brown-med);
+  font-size: 16px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ---- EMAIL SIGNUP ---- */
+.email-bar {
+  background: var(--tan);
+  padding: 20px 24px;
+  text-align: center;
+}
+.email-bar-inner {
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+}
+.email-bar input[type="email"] {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+.email-bar button {
+  background: var(--burgundy);
+  color: var(--white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.email-bar button:hover { background: var(--burgundy-dark); }
+.email-bar-label {
+  font-size: 13px;
+  color: var(--brown-dark);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* ---- MAIN CONTENT ---- */
+.content {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* ---- POST CARDS ---- */
+.posts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+.post-card {
+  background: var(--white);
+  border: 1px solid var(--tan-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.post-card:hover {
+  box-shadow: 0 4px 20px var(--shadow);
+}
+.post-card-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+.post-card-body {
+  padding: 24px;
+}
+.post-card-date {
+  font-size: 12px;
+  color: var(--brown-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.post-card-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--brown-dark);
+  margin-bottom: 8px;
+}
+.post-card-title a {
+  text-decoration: none;
+  color: inherit;
+}
+.post-card-title a:hover { color: var(--burgundy); }
+.post-card-desc {
+  font-size: 15px;
+  color: var(--brown-med);
+  margin-bottom: 16px;
+}
+.post-card-cta {
+  display: inline-block;
+  color: var(--burgundy);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: lowercase;
+}
+.post-card-cta:hover { text-decoration: underline; }
+
+/* ---- DEAL POST (individual page) ---- */
+.post-header {
+  text-align: center;
+  padding: 40px 24px 24px;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.post-header h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.post-header .post-meta {
+  font-size: 13px;
+  color: var(--brown-light);
+}
+.post-grid-image {
+  max-width: 600px;
+  margin: 0 auto 32px;
+  display: block;
+  border-radius: var(--radius);
+}
+.products-list {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px 48px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.product-card {
+  background: var(--white);
+  border: 1px solid var(--tan-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-align: center;
+  transition: box-shadow 0.2s;
+}
+.product-card:hover {
+  box-shadow: 0 4px 16px var(--shadow);
+}
+.product-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: var(--white);
+  padding: 16px;
+}
+.product-card-body {
+  padding: 16px;
+  border-top: 1px solid var(--tan-light);
+}
+.product-card-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--brown-dark);
+  margin-bottom: 6px;
+}
+.product-card-price {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--burgundy);
+  margin-bottom: 4px;
+}
+.product-card-was {
+  font-size: 14px;
+  color: var(--brown-light);
+  text-decoration: line-through;
+  margin-bottom: 12px;
+}
+.product-card-btn {
+  display: inline-block;
+  background: var(--burgundy);
+  color: var(--white);
+  padding: 10px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.product-card-btn:hover { background: var(--burgundy-dark); }
+
+/* ---- FOOTER ---- */
+footer {
+  background: var(--bg-warm);
+  border-top: 1px solid var(--tan-light);
+  padding: 32px 24px;
+  text-align: center;
+}
+footer p {
+  font-size: 13px;
+  color: var(--brown-light);
+}
+footer a {
+  color: var(--brown-med);
+  text-decoration: none;
+}
+footer .footer-brand {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--brown-dark);
+  margin-bottom: 8px;
+}
+.ad-disclosure {
+  font-size: 11px;
+  color: var(--brown-light);
+  margin-top: 8px;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (min-width: 640px) {
+  .posts-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero h1 { font-size: 42px; }
+}
+@media (max-width: 560px) {
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 13px; }
+  .email-bar-inner { flex-direction: column; }
+  .hero h1 { font-size: 28px; }
+  .products-list { grid-template-columns: 1fr; }
+}
