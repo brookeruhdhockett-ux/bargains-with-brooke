@@ -148,8 +148,8 @@ nav {
 }
 .post-card-img {
   width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
+  object-fit: contain;
+  background: var(--bg-warm);
 }
 .post-card-body {
   padding: 24px;
@@ -186,6 +186,45 @@ nav {
   text-transform: lowercase;
 }
 .post-card-cta:hover { text-decoration: underline; }
+.post-card-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--burgundy);
+  background: rgba(180, 50, 50, 0.08);
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+/* ---- CATEGORY FILTER ---- */
+.category-filter {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px 24px 0;
+  flex-wrap: wrap;
+}
+.cat-btn {
+  background: var(--white);
+  border: 1px solid var(--tan-light);
+  padding: 8px 20px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--brown-med);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: lowercase;
+}
+.cat-btn:hover { border-color: var(--burgundy); color: var(--burgundy); }
+.cat-btn.active {
+  background: var(--burgundy);
+  color: var(--white);
+  border-color: var(--burgundy);
+}
 
 /* ---- DEAL POST (individual page) ---- */
 .post-header {
@@ -204,10 +243,34 @@ nav {
   color: var(--brown-light);
 }
 .post-grid-image {
+  width: 90%;
   max-width: 600px;
   margin: 0 auto 32px;
   display: block;
   border-radius: var(--radius);
+}
+.post-intro {
+  max-width: 640px;
+  margin: 0 auto 32px;
+  padding: 0 24px;
+  text-align: center;
+}
+.post-intro p {
+  font-size: 16px;
+  color: var(--brown-med);
+  line-height: 1.7;
+}
+.post-category-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--burgundy);
+  background: rgba(180, 50, 50, 0.08);
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 12px;
 }
 .products-list {
   max-width: var(--max-w);
@@ -269,6 +332,13 @@ nav {
   transition: background 0.2s;
 }
 .product-card-btn:hover { background: var(--burgundy-dark); }
+.product-desc {
+  font-size: 14px;
+  color: var(--brown-med);
+  line-height: 1.6;
+  margin-bottom: 14px;
+  text-align: left;
+}
 
 /* ---- FOOTER ---- */
 footer {

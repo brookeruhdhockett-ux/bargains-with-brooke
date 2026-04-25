@@ -28,27 +28,41 @@
   <div class="email-bar">
     <div class="email-bar-label">get deals of the week in your inbox</div>
     <div class="email-bar-inner">
-      <input type="email" placeholder="your email">
-      <button type="button">subscribe</button>
+      <div id="mc_embed_shell">
+        <form action="https://placeholder.us22.list-manage.com/subscribe/post" method="post" class="email-form" target="_blank">
+          <input type="email" name="EMAIL" placeholder="your email" required>
+          <button type="submit">subscribe</button>
+        </form>
+      </div>
     </div>
+  </div>
+
+  <!-- Category Filter -->
+  <div class="category-filter">
+    <button class="cat-btn active" data-cat="all">all</button>
+    <button class="cat-btn" data-cat="gift-guide">gift guides</button>
+    <button class="cat-btn" data-cat="deals">deals</button>
+    <button class="cat-btn" data-cat="kids">kids</button>
   </div>
 
   <div class="content">
     <div class="posts-grid">
 
-      <div class="post-card">
+      <div class="post-card" data-category="gift-guide">
         <img src="assets/images/grid3_mothers_day.jpg" alt="Mother's Day Gift Guide" class="post-card-img">
         <div class="post-card-body">
+          <span class="post-card-tag">gift guide</span>
           <div class="post-card-date">April 26, 2026</div>
           <div class="post-card-title"><a href="posts/mothers-day-gifts.html">mother's day gift guide</a></div>
-          <p class="post-card-desc">the stanley is a no-brainer and that candle set is so good. all things i'd actually want.</p>
+          <p class="post-card-desc">9 things she'd never buy herself — from a $5 stoneware mug to the ember mug that changed my mornings.</p>
           <a href="posts/mothers-day-gifts.html" class="post-card-cta">shop these deals →</a>
         </div>
       </div>
 
-      <div class="post-card">
+      <div class="post-card" data-category="deals">
         <img src="assets/images/grid1_summer_linen.jpg" alt="Summer Linen Essentials" class="post-card-img">
         <div class="post-card-body">
+          <span class="post-card-tag">deals</span>
           <div class="post-card-date">April 26, 2026</div>
           <div class="post-card-title"><a href="posts/summer-linen-essentials.html">summer linen essentials</a></div>
           <p class="post-card-desc">lightweight, breathable, and actually cute — everything under $25.</p>
@@ -56,9 +70,10 @@
         </div>
       </div>
 
-      <div class="post-card">
+      <div class="post-card" data-category="kids">
         <img src="assets/images/grid2_boys_summer.jpg" alt="Boys Summer Basics" class="post-card-img">
         <div class="post-card-body">
+          <span class="post-card-tag">kids</span>
           <div class="post-card-date">April 26, 2026</div>
           <div class="post-card-title"><a href="posts/boys-summer-basics.html">boys summer basics</a></div>
           <p class="post-card-desc">stocking up on swim, shorts, and rash guards before it sells out. all from target.</p>
@@ -74,6 +89,20 @@
     <p><a href="https://instagram.com/brookecohome">@brookecohome</a></p>
     <p class="ad-disclosure">this site contains affiliate links. i may earn a small commission at no extra cost to you. #ad</p>
   </footer>
+
+  <script>
+    // Category filtering
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.cat;
+        document.querySelectorAll('.post-card').forEach(card => {
+          card.style.display = (cat === 'all' || card.dataset.category === cat) ? '' : 'none';
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
