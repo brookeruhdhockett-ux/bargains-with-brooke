@@ -3,10 +3,17 @@
 :root {
   --bg: #ffffff;
   --bg-warm: #f5f0eb;
+  --bg-pattern: #f9f5f0;
   --tan: #deccb4;
   --tan-light: #e8ddd0;
   --burgundy: #b43232;
   --burgundy-dark: #8a2626;
+  --blue: #5b7a9d;
+  --blue-light: #e8eef4;
+  --sage: #8a9e8a;
+  --sage-light: #eaf0ea;
+  --rose: #c4868a;
+  --rose-light: #f5e8e9;
   --brown-dark: #28231e;
   --brown-med: #645a4a;
   --brown-light: #9a8b78;
@@ -26,10 +33,24 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ---- GINGHAM PATTERN (reusable) ---- */
+.gingham {
+  background-color: var(--bg-pattern);
+  background-image:
+    linear-gradient(45deg, rgba(91,122,157,0.06) 25%, transparent 25%, transparent 75%, rgba(91,122,157,0.06) 75%),
+    linear-gradient(45deg, rgba(91,122,157,0.06) 25%, transparent 25%, transparent 75%, rgba(91,122,157,0.06) 75%),
+    linear-gradient(rgba(91,122,157,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91,122,157,0.04) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 10px 10px, 10px 10px;
+  background-position: 0 0, 10px 10px, 0 0, 0 0;
+}
+
 /* ---- NAV ---- */
 nav {
   background: var(--white);
   border-bottom: 1px solid var(--tan-light);
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, var(--rose), var(--burgundy), var(--blue), var(--sage)) 1;
   padding: 0 24px;
   position: sticky;
   top: 0;
@@ -65,10 +86,18 @@ nav {
 
 /* ---- HERO COMPACT ---- */
 .hero-compact {
-  background: var(--bg-warm);
   padding: 20px 24px;
   text-align: center;
   border-bottom: 1px solid var(--tan-light);
+  /* subtle gingham */
+  background-color: var(--bg-pattern);
+  background-image:
+    linear-gradient(45deg, rgba(91,122,157,0.05) 25%, transparent 25%, transparent 75%, rgba(91,122,157,0.05) 75%),
+    linear-gradient(45deg, rgba(91,122,157,0.05) 25%, transparent 25%, transparent 75%, rgba(91,122,157,0.05) 75%),
+    linear-gradient(rgba(91,122,157,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91,122,157,0.035) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 10px 10px, 10px 10px;
+  background-position: 0 0, 10px 10px, 0 0, 0 0;
 }
 .hero-compact p {
   color: var(--brown-med);
@@ -182,6 +211,14 @@ nav {
   border-radius: 4px;
   margin-bottom: 8px;
 }
+/* colored tags by category */
+.post-card[data-category="gift-guide"] .post-card-tag { color: var(--rose); background: var(--rose-light); }
+.post-card[data-category="deals"] .post-card-tag { color: var(--blue); background: var(--blue-light); }
+.post-card[data-category="kids"] .post-card-tag { color: var(--sage); background: var(--sage-light); }
+/* colored left accent on list view cards */
+.posts-grid.view-list .post-card[data-category="gift-guide"] { border-left: 3px solid var(--rose); }
+.posts-grid.view-list .post-card[data-category="deals"] { border-left: 3px solid var(--blue); }
+.posts-grid.view-list .post-card[data-category="kids"] { border-left: 3px solid var(--sage); }
 
 /* ---- TOOLBAR (view toggle + category filter) ---- */
 .toolbar {
@@ -263,6 +300,16 @@ nav {
   color: var(--white);
   border-color: var(--burgundy);
 }
+/* tinted category pills */
+.cat-btn[data-cat="gift-guide"] { background: var(--rose-light); border-color: rgba(196,134,138,0.3); color: var(--rose); }
+.cat-btn[data-cat="gift-guide"]:hover { border-color: var(--rose); color: var(--rose); }
+.cat-btn[data-cat="gift-guide"].active { background: var(--rose); color: var(--white); border-color: var(--rose); }
+.cat-btn[data-cat="deals"] { background: var(--blue-light); border-color: rgba(91,122,157,0.3); color: var(--blue); }
+.cat-btn[data-cat="deals"]:hover { border-color: var(--blue); color: var(--blue); }
+.cat-btn[data-cat="deals"].active { background: var(--blue); color: var(--white); border-color: var(--blue); }
+.cat-btn[data-cat="kids"] { background: var(--sage-light); border-color: rgba(138,158,138,0.3); color: var(--sage); }
+.cat-btn[data-cat="kids"]:hover { border-color: var(--sage); color: var(--sage); }
+.cat-btn[data-cat="kids"].active { background: var(--sage); color: var(--white); border-color: var(--sage); }
 
 /* ---- DEAL POST (individual page) ---- */
 .post-header {
@@ -380,10 +427,19 @@ nav {
 
 /* ---- FOOTER ---- */
 footer {
-  background: var(--bg-warm);
-  border-top: 1px solid var(--tan-light);
   padding: 32px 24px;
   text-align: center;
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, var(--burgundy), var(--blue), var(--sage), var(--rose), var(--burgundy)) 1;
+  /* subtle gingham */
+  background-color: var(--bg-pattern);
+  background-image:
+    linear-gradient(45deg, rgba(91,122,157,0.05) 25%, transparent 25%, transparent 75%, rgba(91,122,157,0.05) 75%),
+    linear-gradient(45deg, rgba(91,122,157,0.05) 25%, transparent 25%, transparent 75%, rgba(91,122,157,0.05) 75%),
+    linear-gradient(rgba(91,122,157,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91,122,157,0.035) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 10px 10px, 10px 10px;
+  background-position: 0 0, 10px 10px, 0 0, 0 0;
 }
 footer p {
   font-size: 13px;
@@ -479,6 +535,10 @@ footer .footer-brand {
   border-color: var(--burgundy);
   color: var(--burgundy);
 }
+.social-link:nth-child(1) { background: var(--rose-light); border-color: rgba(196,134,138,0.25); }
+.social-link:nth-child(2) { background: var(--blue-light); border-color: rgba(91,122,157,0.25); }
+.social-link:nth-child(3) { background: var(--sage-light); border-color: rgba(138,158,138,0.25); }
+.social-link:nth-child(4) { background: #f5f0eb; border-color: var(--tan-light); }
 .about-disclosure {
   margin-top: 40px;
   padding-top: 24px;
