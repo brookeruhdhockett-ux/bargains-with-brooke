@@ -442,6 +442,66 @@ nav {
   text-align: left;
 }
 
+/* ---- POST EMAIL SIGNUP ---- */
+.post-email-signup {
+  max-width: 540px;
+  margin: 0 auto 0;
+  padding: 32px 24px;
+  text-align: center;
+  background: var(--bg-pattern);
+  border: 1px solid var(--tan-light);
+  border-radius: var(--radius);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(122,154,181,0.06) 0px,
+      rgba(122,154,181,0.06) 12px,
+      transparent 12px,
+      transparent 24px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(122,154,181,0.06) 0px,
+      rgba(122,154,181,0.06) 12px,
+      transparent 12px,
+      transparent 24px
+    );
+}
+.post-email-signup p {
+  font-size: 15px;
+  color: var(--brown-med);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+.post-email-signup form {
+  display: flex;
+  gap: 8px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.post-email-signup input[type="email"] {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--tan-light);
+  border-radius: 8px;
+  font-size: 13px;
+  outline: none;
+  background: var(--white);
+}
+.post-email-signup button {
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.post-email-signup button:hover { background: var(--accent-dark); }
+
 /* ---- FOOTER ---- */
 footer {
   padding: 32px 24px;
