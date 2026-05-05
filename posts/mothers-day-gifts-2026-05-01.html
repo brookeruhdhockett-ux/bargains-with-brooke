@@ -10,7 +10,7 @@
   <meta property="og:image" content="../assets/images/deals/grid_mothers_day_gifts_050126.jpg">
   <meta name="pinterest-rich-pin" content="true">
   <meta property="og:type" content="article">
-  <link rel="stylesheet" href="../assets/css/style.css?v=5">
+  <link rel="stylesheet" href="../assets/css/style.css?v=7">
 </head>
 <body>
 
@@ -88,5 +88,21 @@
     <p class="ad-disclosure">this site contains affiliate links. i may earn a small commission at no extra cost to you. #ad</p>
   </footer>
 
+
+  <script>
+    document.querySelectorAll('.product-card img').forEach(img => {
+      img.onerror = function() {
+        this.classList.add('img-broken');
+        var ph = document.createElement('div');
+        ph.className = 'img-placeholder';
+        ph.textContent = 'image unavailable';
+        this.parentNode.insertBefore(ph, this);
+      };
+      // Re-trigger for already-broken images
+      if (img.complete && img.naturalWidth === 0) {
+        img.onerror();
+      }
+    });
+  </script>
 </body>
 </html>

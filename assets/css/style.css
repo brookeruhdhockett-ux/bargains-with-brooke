@@ -434,6 +434,20 @@ nav {
   transition: background 0.2s;
 }
 .product-card-btn:hover { background: var(--accent-dark); }
+.product-card img.img-broken {
+  display: none;
+}
+.product-card .img-placeholder {
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--bg-pattern);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brown-light);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
 .product-desc {
   font-size: 14px;
   color: var(--brown-med);
