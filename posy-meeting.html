@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Posy Academy x Live Academy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #faf9f6; color: #1a1a1a; }
+  .page { max-width: 680px; margin: 0 auto; padding: 40px 28px; }
+
+  .header { text-align: center; margin-bottom: 36px; }
+  .header .badge { display: inline-block; background: #1a1a1a; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 16px; }
+  .header h1 { font-family: 'DM Serif Display', serif; font-size: 32px; line-height: 1.2; margin-bottom: 8px; }
+  .header .sub { color: #6b6b6b; font-size: 15px; line-height: 1.6; }
+
+  .section { margin-bottom: 28px; }
+  .section h2 { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 12px; }
+  .section h3 { font-size: 13px; font-weight: 700; color: #6b5c4c; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+  .section p, .section li { font-size: 14px; line-height: 1.6; color: #3a3a3a; }
+
+  .card { background: #fff; border: 1px solid #e8e0d4; border-radius: 12px; padding: 20px; margin-bottom: 12px; }
+  .card .card-title { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+  .card .card-desc { font-size: 13px; color: #6b6b6b; line-height: 1.5; }
+
+  .dark-card { background: #1a1a1a; color: #fff; border-radius: 16px; padding: 24px; margin-bottom: 28px; }
+  .dark-card h2 { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 8px; color: #fff; }
+  .dark-card p { font-size: 14px; color: #c0c0c0; line-height: 1.6; }
+  .dark-card strong { color: #fff; }
+
+  .timeline { list-style: none; border-left: 3px solid #e8e0d4; padding-left: 24px; margin-left: 8px; }
+  .timeline li { margin-bottom: 20px; position: relative; }
+  .timeline li::before { content: ""; position: absolute; left: -30px; top: 4px; width: 12px; height: 12px; background: #1a1a1a; border-radius: 50%; }
+  .timeline .t-date { font-size: 12px; font-weight: 700; color: #6b5c4c; text-transform: uppercase; letter-spacing: 1px; }
+  .timeline .t-title { font-weight: 700; font-size: 15px; margin: 2px 0; }
+  .timeline .t-desc { font-size: 13px; color: #6b6b6b; line-height: 1.4; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .beta-box { background: linear-gradient(135deg, #e8e0d4, #d4c9b8); border-radius: 16px; padding: 24px; margin-bottom: 28px; }
+  .beta-box h2 { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 10px; }
+  .beta-box ul { list-style: none; padding: 0; }
+  .beta-box li { font-size: 14px; margin-bottom: 8px; color: #3a3a3a; padding-left: 20px; position: relative; }
+  .beta-box li::before { content: "\2713"; position: absolute; left: 0; font-weight: 700; color: #4a9; }
+
+  .modules { list-style: none; counter-reset: mod; }
+  .modules li { background: #fff; border: 1px solid #e8e0d4; border-radius: 12px; padding: 14px 14px 14px 48px; margin-bottom: 8px; position: relative; font-size: 14px; }
+  .modules li::before { counter-increment: mod; content: counter(mod); position: absolute; left: 14px; top: 14px; width: 24px; height: 24px; background: #1a1a1a; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+  .modules .mod-title { font-weight: 700; font-size: 14px; }
+  .modules .mod-sub { font-size: 12px; color: #6b6b6b; }
+
+  .footer { text-align: center; margin-top: 32px; padding-top: 20px; border-top: 1px solid #e8e0d4; }
+  .footer p { font-size: 12px; color: #a0a0a0; }
+  .footer .brand { font-family: 'DM Serif Display', serif; font-size: 18px; color: #1a1a1a; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="badge">Partnership Proposal</div>
+    <h1>The Posy Academy x Live Academy</h1>
+    <p class="sub">A course teaching creators how to build, manage, and scale their business using AI — and a beta partnership to build it right.</p>
+  </div>
+
+  <div class="dark-card">
+    <h2>The Concept</h2>
+    <p>"I'm a TikTok Shop affiliate with 8 employees working for me. They never sleep, work all night, and I don't pay them a dime."</p>
+    <p style="margin-top: 12px;">This course teaches creators and affiliates how to use AI as their team — handling content, finances, analytics, outreach, and scheduling. <strong>Not a tool tutorial. A complete business system.</strong></p>
+  </div>
+
+  <div class="section">
+    <h2>Course Modules</h2>
+    <ol class="modules">
+      <li><div class="mod-title">The AI Employee System</div><div class="mod-sub">How one person runs a full creator business with AI agents</div></li>
+      <li><div class="mod-title">Prompt Mastery + Prompt Library</div><div class="mod-sub">200+ ready-to-use prompts for business, content, money, and life</div></li>
+      <li><div class="mod-title">Your Money on Autopilot</div><div class="mod-sub">Track income, expenses, and tax deductions automatically</div></li>
+      <li><div class="mod-title">Content That Sells</div><div class="mod-sub">AI-powered scripts, product research, content planning</div></li>
+      <li><div class="mod-title">Live Stream Growth</div><div class="mod-sub">Analytics-driven coaching to grow live revenue and engagement</div></li>
+      <li><div class="mod-title">AI Safety & Privacy</div><div class="mod-sub">What's safe to share with AI and what isn't</div></li>
+      <li><div class="mod-title">Building Your AI Team</div><div class="mod-sub">Set up AI agents that work for you around the clock</div></li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h3>What's Included Beyond the Course</h3>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Posy Shop</div>
+        <div class="card-desc">AI-powered finance and analytics app built specifically for TikTok Shop affiliates and live streamers</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Prompt Library</div>
+        <div class="card-desc">200+ prompts organized by category — works with ChatGPT, Claude, or any AI tool</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Templates & SOPs</div>
+        <div class="card-desc">Scripts, trackers, planners, and standard operating procedures</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Private Community</div>
+        <div class="card-desc">A group of AI-powered creators sharing wins, prompts, and strategies</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="beta-box">
+    <h2>The Beta Proposal</h2>
+    <p style="font-size: 14px; color: #4a4a4a; margin-bottom: 14px;">Before public launch, I want to run a live beta with a small group to get real feedback and build the course around what creators actually need.</p>
+    <ul>
+      <li><strong>Who:</strong> Live Academy members get first access</li>
+      <li><strong>When:</strong> 6-week live cohort starting mid-June</li>
+      <li><strong>Cost:</strong> Free or heavily discounted for beta participants</li>
+      <li><strong>Format:</strong> Live weekly sessions with Brooke + async support</li>
+      <li><strong>What they get:</strong> Full course access forever, direct input on what gets built</li>
+      <li><strong>What I get:</strong> Real feedback, testimonials, proof that it works</li>
+      <li><strong>Beta graduates become founding testimonials for the public launch</strong></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Timeline</h2>
+    <ul class="timeline">
+      <li>
+        <div class="t-date">Now — June 2026</div>
+        <div class="t-title">Pre-Launch & List Building</div>
+        <div class="t-desc">Launch freebies (prompt library sampler, AI audit quiz). Build email list from TikTok audience and Live Academy community.</div>
+      </li>
+      <li>
+        <div class="t-date">Mid-June — July 2026</div>
+        <div class="t-title">Live Beta with LA Members</div>
+        <div class="t-desc">6-week live cohort. Teach the course live, record everything, get feedback in real time. This shapes the final product.</div>
+      </li>
+      <li>
+        <div class="t-date">August 2026</div>
+        <div class="t-title">Polish & Package</div>
+        <div class="t-desc">Turn beta recordings + feedback into the final course. Add bonus modules. Collect testimonials from beta graduates.</div>
+      </li>
+      <li>
+        <div class="t-date">September — October 2026</div>
+        <div class="t-title">Public Launch</div>
+        <div class="t-desc">Free webinar funnel + email sequence + open cart. Founding member pricing. Goal: 100-200 students.</div>
+      </li>
+      <li>
+        <div class="t-date">November 2026+</div>
+        <div class="t-title">Evergreen</div>
+        <div class="t-desc">Automated webinar funnel runs 24/7. Course sells itself. Optimize over time.</div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Pricing (Post-Beta)</h2>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Starter — $497</div>
+        <div class="card-desc">Full course + prompt library + community. Payment plan: $97/mo x 6</div>
+      </div>
+      <div class="card" style="background: #1a1a1a; color: #fff; border-color: #1a1a1a;">
+        <div class="card-title">Pro — $997</div>
+        <div class="card-desc" style="color: #a0a0a0;">Everything + Posy Shop + templates + bonus modules. Payment plan: $197/mo x 6</div>
+      </div>
+    </div>
+    <p style="font-size: 13px; color: #6b6b6b; margin-top: 10px; text-align: center;">VIP tier ($1,997) with group coaching available at public launch</p>
+  </div>
+
+  <div class="dark-card">
+    <h2>Why This Works</h2>
+    <p style="margin-bottom: 8px;"><strong>The audience exists.</strong> 1,000+ TikTok Shop affiliates already in my network, plus a growing TikTok audience.</p>
+    <p style="margin-bottom: 8px;"><strong>The proof exists.</strong> I built and run these AI systems daily. This isn't theory — it's my actual business.</p>
+    <p style="margin-bottom: 8px;"><strong>The tools exist.</strong> Posy Shop is a real app that comes with the course. Students get software, not just videos.</p>
+    <p><strong>Nobody else is doing this.</strong> There is no course teaching non-technical creators how to run their business with AI employees. This is wide open.</p>
+  </div>
+
+  <div class="footer">
+    <p class="brand">The Posy Academy</p>
+    <p>Brooke Hockett — @hellomrshockett</p>
+  </div>
+
+</div>
+</body>
+</html>
