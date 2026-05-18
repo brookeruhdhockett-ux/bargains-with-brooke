@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>admin — bargains with brooke</title>
+<style>
+:root {
+  --bg: #faf7f3;
+  --card-bg: #ffffff;
+  --accent: #7a9ab5;
+  --accent-dark: #5d7f9a;
+  --sage: #8a9e8a;
+  --sage-dark: #6b8b65;
+  --rose: #c4968a;
+  --rose-dark: #a87a6e;
+  --brown-dark: #28231e;
+  --brown-med: #645a4a;
+  --brown-light: #9a8b78;
+  --tan-light: #e8ddd0;
+  --red: #c45a5a;
+  --red-dark: #a84040;
+  --shadow: rgba(0,0,0,0.08);
+  --radius: 14px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg); color:var(--brown-dark); line-height:1.5; }
+
+.top-bar { background:#fff; border-bottom:1px solid var(--tan-light); padding:14px 20px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100; }
+.top-bar h1 { font-size:1rem; font-weight:600; }
+.top-bar .setup-btn { font-size:.8rem; background:var(--accent); color:#fff; border:none; padding:6px 14px; border-radius:8px; cursor:pointer; }
+.top-bar .setup-btn:hover { background:var(--accent-dark); }
+
+.status-bar { padding:10px 20px; font-size:.78rem; color:var(--brown-light); background:#fff; border-bottom:1px solid #f0ebe5; display:flex; gap:16px; }
+.status-bar .dot { width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:4px; vertical-align:middle; }
+.dot-green { background:#6b8b65; }
+.dot-yellow { background:#c4a84a; }
+.dot-red { background:#c45a5a; }
+
+.filter-bar { padding:12px 20px; display:flex; gap:8px; flex-wrap:wrap; }
+.filter-btn { font-size:.78rem; padding:6px 14px; border-radius:20px; border:1px solid var(--tan-light); background:#fff; color:var(--brown-med); cursor:pointer; transition:all .15s; }
+.filter-btn:hover { border-color:var(--accent); color:var(--accent); }
+.filter-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+
+.grid { padding:12px 16px; display:grid; grid-template-columns:1fr; gap:16px; max-width:800px; margin:0 auto; }
+
+.card { background:var(--card-bg); border-radius:var(--radius); box-shadow:0 2px 12px var(--shadow); overflow:hidden; }
+.card-img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
+.card-body { padding:14px 16px; }
+.card-title { font-weight:600; font-size:.95rem; margin-bottom:4px; }
+.card-meta { font-size:.75rem; color:var(--brown-light); margin-bottom:8px; }
+.card-caption { font-size:.82rem; color:var(--brown-med); margin-bottom:12px; line-height:1.5; max-height:60px; overflow:hidden; }
+.card-caption.expanded { max-height:none; }
+.show-more { font-size:.75rem; color:var(--accent); cursor:pointer; margin-bottom:10px; display:inline-block; }
+
+.card-status { display:inline-block; font-size:.7rem; font-weight:600; padding:3px 10px; border-radius:12px; margin-bottom:10px; text-transform:uppercase; letter-spacing:.5px; }
+.status-pending { background:#fef3cd; color:#856404; }
+.status-approved { background:#d4edda; color:#155724; }
+.status-rejected { background:#f8d7da; color:#721c24; }
+.status-posted { background:#d1ecf1; color:#0c5460; }
+
+.actions { display:flex; gap:8px; flex-wrap:wrap; }
+.btn { font-size:.78rem; padding:8px 14px; border-radius:10px; border:none; cursor:pointer; font-weight:500; transition:all .15s; display:inline-flex; align-items:center; gap:5px; }
+.btn:disabled { opacity:.5; cursor:not-allowed; }
+.btn-approve { background:var(--sage); color:#fff; }
+.btn-approve:hover:not(:disabled) { background:var(--sage-dark); }
+.btn-reject { background:var(--red); color:#fff; }
+.btn-reject:hover:not(:disabled) { background:var(--red-dark); }
+.btn-fb { background:#1877F2; color:#fff; }
+.btn-fb:hover:not(:disabled) { background:#1565c0; }
+.btn-pin { background:#E60023; color:#fff; }
+.btn-pin:hover:not(:disabled) { background:#c4001d; }
+.btn-edit { background:var(--tan-light); color:var(--brown-med); }
+.btn-edit:hover:not(:disabled) { background:#ddd0c0; }
+
+.empty-state { text-align:center; padding:80px 20px; color:var(--brown-light); }
+.empty-state h2 { font-size:1.1rem; font-weight:500; margin-bottom:8px; }
+.empty-state p { font-size:.85rem; }
+
+/* Setup modal */
+.modal-overlay { position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.4); z-index:200; display:none; align-items:center; justify-content:center; padding:20px; }
+.modal-overlay.show { display:flex; }
+.modal { background:#fff; border-radius:var(--radius); padding:24px; max-width:440px; width:100%; }
+.modal h2 { font-size:1rem; margin-bottom:16px; }
+.modal label { font-size:.8rem; font-weight:500; color:var(--brown-med); display:block; margin-bottom:4px; margin-top:12px; }
+.modal input { width:100%; padding:8px 12px; border:1px solid var(--tan-light); border-radius:8px; font-size:.85rem; }
+.modal .save-btn { margin-top:16px; width:100%; padding:10px; background:var(--sage); color:#fff; border:none; border-radius:10px; font-size:.85rem; font-weight:500; cursor:pointer; }
+.modal .save-btn:hover { background:var(--sage-dark); }
+.modal .note { font-size:.72rem; color:var(--brown-light); margin-top:12px; }
+
+.toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--brown-dark); color:#fff; padding:10px 20px; border-radius:10px; font-size:.82rem; z-index:300; display:none; }
+.toast.show { display:block; animation: fadeInOut 3s ease; }
+@keyframes fadeInOut { 0%{opacity:0;transform:translateX(-50%) translateY(10px)} 10%{opacity:1;transform:translateX(-50%) translateY(0)} 85%{opacity:1} 100%{opacity:0} }
+
+@media(min-width:500px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>bargains with brooke — admin</h1>
+  <button class="setup-btn" onclick="showSetup()">settings</button>
+</div>
+
+<div class="status-bar" id="statusBar">
+  <span><span class="dot dot-yellow"></span> loading...</span>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="pending" onclick="setFilter('pending',this)">pending</button>
+  <button class="filter-btn" data-filter="approved" onclick="setFilter('approved',this)">approved</button>
+  <button class="filter-btn" data-filter="posted" onclick="setFilter('posted',this)">posted</button>
+  <button class="filter-btn" data-filter="rejected" onclick="setFilter('rejected',this)">rejected</button>
+  <button class="filter-btn" data-filter="all" onclick="setFilter('all',this)">all</button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Setup Modal -->
+<div class="modal-overlay" id="setupModal">
+  <div class="modal">
+    <h2>admin settings</h2>
+    <label>GitHub Token (repo scope)</label>
+    <input type="password" id="ghToken" placeholder="ghp_...">
+    <label>Blotato API Key</label>
+    <input type="password" id="blToken" placeholder="blt_...">
+    <label>Brooke Co Facebook Page ID</label>
+    <input type="text" id="fbPageId" placeholder="862986150504643" value="862986150504643">
+    <label>Facebook Account ID</label>
+    <input type="text" id="fbAccountId" placeholder="30549" value="30549">
+    <label>Pinterest Account ID</label>
+    <input type="text" id="pinAccountId" placeholder="6250" value="6250">
+    <button class="save-btn" onclick="saveSetup()">save settings</button>
+    <p class="note">stored in your browser only. never sent anywhere except the APIs above.</p>
+  </div>
+</div>
+
+<script>
+const REPO = 'brookeruhdhockett-ux/bargains-with-brooke';
+const BRANCH = 'main';
+const BLOTATO_URL = 'https://backend.blotato.com/v2';
+let items = [];
+let currentFilter = 'pending';
+
+// Settings
+function getSettings() {
+  return {
+    ghToken: localStorage.getItem('bwb_gh_token') || '',
+    blToken: localStorage.getItem('bwb_bl_token') || '',
+    fbPageId: localStorage.getItem('bwb_fb_page') || '862986150504643',
+    fbAccountId: localStorage.getItem('bwb_fb_account') || '30549',
+    pinAccountId: localStorage.getItem('bwb_pin_account') || '6250'
+  };
+}
+
+function showSetup() {
+  const s = getSettings();
+  document.getElementById('ghToken').value = s.ghToken;
+  document.getElementById('blToken').value = s.blToken;
+  document.getElementById('fbPageId').value = s.fbPageId;
+  document.getElementById('fbAccountId').value = s.fbAccountId;
+  document.getElementById('pinAccountId').value = s.pinAccountId;
+  document.getElementById('setupModal').classList.add('show');
+}
+
+function saveSetup() {
+  localStorage.setItem('bwb_gh_token', document.getElementById('ghToken').value.trim());
+  localStorage.setItem('bwb_bl_token', document.getElementById('blToken').value.trim());
+  localStorage.setItem('bwb_fb_page', document.getElementById('fbPageId').value.trim());
+  localStorage.setItem('bwb_fb_account', document.getElementById('fbAccountId').value.trim());
+  localStorage.setItem('bwb_pin_account', document.getElementById('pinAccountId').value.trim());
+  document.getElementById('setupModal').classList.remove('show');
+  toast('settings saved');
+  updateStatus();
+}
+
+document.getElementById('setupModal').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('show');
+});
+
+// Toast
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.remove('show');
+  void t.offsetWidth;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Status bar
+function updateStatus() {
+  const s = getSettings();
+  const bar = document.getElementById('statusBar');
+  const gh = s.ghToken ? '<span class="dot dot-green"></span> github connected' : '<span class="dot dot-red"></span> github — set token in settings';
+  const bl = s.blToken ? '<span class="dot dot-green"></span> blotato connected' : '<span class="dot dot-red"></span> blotato — set key in settings';
+  const pending = items.filter(i => i.status === 'pending').length;
+  bar.innerHTML = `<span>${gh}</span><span>${bl}</span><span>${pending} pending</span>`;
+}
+
+// Load pending items
+async function loadItems() {
+  try {
+    const resp = await fetch('pending.json?t=' + Date.now());
+    items = await resp.json();
+  } catch(e) {
+    items = [];
+  }
+  updateStatus();
+  render();
+}
+
+// Filter
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+// Render
+function render() {
+  const grid = document.getElementById('grid');
+  const filtered = currentFilter === 'all' ? items : items.filter(i => i.status === currentFilter);
+
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><h2>nothing here</h2><p>${currentFilter === 'pending' ? 'no grids waiting for approval' : 'no ' + currentFilter + ' items'}</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((item, idx) => {
+    const realIdx = items.indexOf(item);
+    const imgSrc = item.image_url || item.grid_image || '';
+    const isPending = item.status === 'pending';
+    const isApproved = item.status === 'approved';
+
+    return `
+    <div class="card">
+      ${imgSrc ? `<img class="card-img" src="${imgSrc}" alt="${item.title || ''}" onerror="this.style.display='none'">` : ''}
+      <div class="card-body">
+        <span class="card-status status-${item.status}">${item.status}</span>
+        <div class="card-title">${item.title || 'untitled grid'}</div>
+        <div class="card-meta">${item.category || 'deals'} · ${item.retailer || ''} · ${item.date || ''}</div>
+        <div class="card-caption" id="caption-${realIdx}">${item.caption || item.description || ''}</div>
+        ${(item.caption||item.description||'').length > 100 ? `<span class="show-more" onclick="toggleCaption(${realIdx})">show more</span>` : ''}
+        <div class="actions">
+          ${isPending ? `
+            <button class="btn btn-approve" onclick="approveItem(${realIdx})">approve blog post</button>
+            <button class="btn btn-reject" onclick="rejectItem(${realIdx})">decline</button>
+          ` : ''}
+          ${isApproved || item.status === 'posted' ? `
+            <button class="btn btn-fb" onclick="postToFacebook(${realIdx})">post to facebook</button>
+            <button class="btn btn-pin" onclick="postToPinterest(${realIdx})">post to pinterest</button>
+          ` : ''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleCaption(idx) {
+  const el = document.getElementById('caption-' + idx);
+  el.classList.toggle('expanded');
+}
+
+// Approve — publish blog post via GitHub API
+async function approveItem(idx) {
+  const item = items[idx];
+  const s = getSettings();
+
+  if (!s.ghToken) { showSetup(); toast('set your github token first'); return; }
+
+  // Update status locally
+  item.status = 'approved';
+  render();
+  toast('approved — publishing to blog...');
+
+  try {
+    // 1. Commit the blog post HTML file
+    if (item.post_html && item.post_filename) {
+      const content = btoa(unescape(encodeURIComponent(item.post_html)));
+      await ghPut(`posts/${item.post_filename}`, content, `Add ${item.title}`, s.ghToken);
+    }
+
+    // 2. Commit the grid image if it's base64
+    if (item.grid_image_base64 && item.grid_image_filename) {
+      await ghPut(`assets/images/deals/${item.grid_image_filename}`, item.grid_image_base64, `Add grid image ${item.grid_image_filename}`, s.ghToken);
+    }
+
+    // 3. Update index.html to add the post card at the top
+    if (item.index_card_html) {
+      await addToIndex(item, s.ghToken);
+    }
+
+    toast('blog post is live');
+    await savePending();
+  } catch(e) {
+    toast('error: ' + e.message);
+    item.status = 'pending';
+    render();
+  }
+}
+
+// GitHub API: create/update file
+async function ghPut(path, contentBase64, message, token) {
+  // Check if file exists (to get sha for update)
+  let sha = null;
+  try {
+    const existing = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}?ref=${BRANCH}`, {
+      headers: { 'Authorization': `token ${token}` }
+    });
+    if (existing.ok) {
+      const data = await existing.json();
+      sha = data.sha;
+    }
+  } catch(e) {}
+
+  const body = {
+    message: message,
+    content: contentBase64,
+    branch: BRANCH
+  };
+  if (sha) body.sha = sha;
+
+  const resp = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `token ${token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!resp.ok) {
+    const err = await resp.json();
+    throw new Error(err.message || 'GitHub API error');
+  }
+  return resp.json();
+}
+
+// Add post card to top of index.html
+async function addToIndex(item, token) {
+  // Fetch current index.html
+  const resp = await fetch(`https://api.github.com/repos/${REPO}/contents/index.html?ref=${BRANCH}`, {
+    headers: { 'Authorization': `token ${token}` }
+  });
+  const data = await resp.json();
+  const currentContent = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+
+  // Build the new post card
+  const cardHtml = item.index_card_html;
+
+  // Insert after <!-- posts start --> or after <div class="posts-grid">
+  const marker = '<div class="posts-grid">';
+  const insertPos = currentContent.indexOf(marker);
+  if (insertPos === -1) throw new Error('could not find posts-grid in index.html');
+
+  const insertAfter = insertPos + marker.length;
+  const newContent = currentContent.slice(0, insertAfter) + '\n\n      ' + cardHtml + currentContent.slice(insertAfter);
+
+  const newBase64 = btoa(unescape(encodeURIComponent(newContent)));
+  await ghPut('index.html', newBase64, `Add ${item.title} to homepage`, token);
+}
+
+// Reject
+function rejectItem(idx) {
+  items[idx].status = 'rejected';
+  render();
+  savePending();
+  toast('declined');
+}
+
+// Post to Facebook via Blotato
+async function postToFacebook(idx) {
+  const item = items[idx];
+  const s = getSettings();
+
+  if (!s.blToken) { showSetup(); toast('set your blotato key first'); return; }
+
+  const btn = event.target;
+  btn.disabled = true;
+  btn.textContent = 'posting...';
+
+  try {
+    const imageUrl = item.image_url || item.grid_image || '';
+    const caption = item.fb_caption || item.caption || item.description || item.title;
+
+    const payload = {
+      post: {
+        accountId: s.fbAccountId,
+        content: {
+          text: caption,
+          mediaUrls: imageUrl ? [imageUrl] : [],
+          platform: 'facebook'
+        },
+        target: {
+          targetType: 'facebook',
+          pageId: s.fbPageId
+        }
+      }
+    };
+
+    const resp = await fetch(BLOTATO_URL + '/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'blotato-api-key': s.blToken
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!resp.ok) {
+      const err = await resp.json();
+      throw new Error(err.message || JSON.stringify(err));
+    }
+
+    const result = await resp.json();
+    item.fb_post_id = result.postSubmissionId || result.id;
+    item.status = 'posted';
+    render();
+    savePending();
+    toast('posted to facebook');
+  } catch(e) {
+    toast('facebook error: ' + e.message);
+    btn.disabled = false;
+    btn.textContent = 'post to facebook';
+  }
+}
+
+// Post to Pinterest — opens Pinterest pin builder with pre-filled data
+function postToPinterest(idx) {
+  const item = items[idx];
+  const imageUrl = item.image_url || item.grid_image || '';
+  const blogUrl = item.blog_url || `https://bargainswithbrooke.com/posts/${item.post_filename || ''}`;
+  const description = item.pin_description || item.caption || item.description || item.title;
+
+  const pinUrl = 'https://www.pinterest.com/pin-creation-tool/'
+    + '?url=' + encodeURIComponent(blogUrl)
+    + '&media=' + encodeURIComponent(imageUrl)
+    + '&description=' + encodeURIComponent(description);
+
+  window.open(pinUrl, '_blank');
+  toast('pinterest pin builder opened');
+}
+
+// Save pending.json back to GitHub
+async function savePending() {
+  const s = getSettings();
+  if (!s.ghToken) return;
+
+  try {
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(items, null, 2))));
+    await ghPut('admin/pending.json', content, 'Update pending items', s.ghToken);
+  } catch(e) {
+    console.error('Failed to save pending.json:', e);
+  }
+}
+
+// Init
+loadItems();
+
+// Auto-refresh every 60 seconds
+setInterval(loadItems, 60000);
+</script>
+</body>
+</html>
