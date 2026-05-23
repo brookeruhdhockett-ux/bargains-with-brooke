@@ -7,7 +7,7 @@ generating a tagged search URL.
 Environment variables:
     AMAZON_ACCESS_KEY   — PA-API access key
     AMAZON_SECRET_KEY   — PA-API secret key
-    AMAZON_PARTNER_TAG  — Affiliate tag (default: brookehockett-20)
+    AMAZON_PARTNER_TAG  — Affiliate tag (default: bargainswithbrooke-20)
 """
 
 import os
@@ -24,7 +24,7 @@ try:
 except ImportError:
     requests = None
 
-PARTNER_TAG = os.environ.get("AMAZON_PARTNER_TAG", "brookehockett-20")
+PARTNER_TAG = os.environ.get("AMAZON_PARTNER_TAG", "bargainswithbrooke-20")
 ACCESS_KEY = os.environ.get("AMAZON_ACCESS_KEY", "")
 SECRET_KEY = os.environ.get("AMAZON_SECRET_KEY", "")
 PA_API_HOST = "webservices.amazon.com"
@@ -268,7 +268,7 @@ def search_product(caption_or_title: str, tag: str = None) -> dict:
 
     Args:
         caption_or_title: Product caption or title text
-        tag: Affiliate tag (defaults to brookehockett-20)
+        tag: Affiliate tag (defaults to bargainswithbrooke-20)
 
     Returns:
         dict with: title, price, image_url, affiliate_link, search_query, method

@@ -203,8 +203,10 @@ def build_blog_post(
     html += dedent("""\
       <div class="post-email-signup">
         <p>want deals like these in your inbox every week?</p>
-        <form action="https://placeholder.us22.list-manage.com/subscribe/post" method="post" target="_blank">
-          <input type="email" name="EMAIL" placeholder="your email for weekly deals" required>
+        <form action="https://email-hub-production.up.railway.app/subscribe" method="post">
+          <input type="hidden" name="source" value="blog">
+          <input type="hidden" name="redirect" value="https://bargainswithbrooke.com">
+          <input type="email" name="email" placeholder="your email for weekly deals" required>
           <button type="submit">subscribe</button>
         </form>
       </div>
@@ -266,7 +268,7 @@ if __name__ == "__main__":
     result = build_blog_post(
         product_title="Stanley Quencher 40oz Tumbler",
         product_description="the tumbler that needs no introduction. keeps drinks cold for hours and fits in every cup holder.",
-        amazon_link="https://www.amazon.com/s?k=stanley+quencher+40oz&tag=brookehockett-20",
+        amazon_link="https://www.amazon.com/s?k=stanley+quencher+40oz&tag=bargainswithbrooke-20",
         mavely_link="https://mavely.app.link/example",
         category="deal",
     )

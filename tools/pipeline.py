@@ -4,7 +4,7 @@ pipeline.py — TikTok/Instagram-to-Blog orchestrator.
 Main flow:
 1. Download video from Instagram Reel or TikTok (watermark-free)
 2. Extract product info from the caption
-3. Search Amazon and generate affiliate link (tag: brookehockett-20)
+3. Search Amazon and generate affiliate link (tag: bargainswithbrooke-20)
 4. Build an HTML blog post for bargainswithbrooke.com
 5. Return a summary dict for Telegram approval
 
