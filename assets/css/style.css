@@ -272,9 +272,10 @@ nav {
 }
 
 /* ---- VIEW MODES ---- */
+/* 2-across (default grid) — full image, no cropping */
 .posts-grid.view-grid {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
 }
 .posts-grid.view-grid .post-card {
   border-radius: 4px;
@@ -284,13 +285,40 @@ nav {
   display: none;
 }
 .posts-grid.view-grid .post-card-img {
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
+  width: 100%;
+  object-fit: contain;
   cursor: pointer;
+  background: var(--bg-warm);
 }
+/* 4-across — smaller tiles, still no cropping */
+.posts-grid.view-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+.posts-grid.view-grid-4 .post-card {
+  border-radius: 4px;
+  border: none;
+}
+.posts-grid.view-grid-4 .post-card-body {
+  display: none;
+}
+.posts-grid.view-grid-4 .post-card-img {
+  width: 100%;
+  object-fit: contain;
+  cursor: pointer;
+  background: var(--bg-warm);
+}
+/* List view */
 .posts-grid.view-list {
   grid-template-columns: 1fr;
   gap: 32px;
+}
+
+/* Mobile: 2-across stays 2, 4-across drops to 2 */
+@media (max-width: 600px) {
+  .posts-grid.view-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* ---- CATEGORY FILTER ---- */
